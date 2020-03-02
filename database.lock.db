@@ -1,0 +1,6 @@
+#FileLock
+#Mon Mar 02 16:32:51 MSK 2020
+server=localhost\:52354
+hostName=localhost
+method=file
+id=1709b72fe5e83635cb78843762c124232c033137557

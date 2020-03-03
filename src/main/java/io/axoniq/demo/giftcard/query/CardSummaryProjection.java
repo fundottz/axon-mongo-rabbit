@@ -1,6 +1,7 @@
 package io.axoniq.demo.giftcard.query;
 
 import io.axoniq.demo.giftcard.api.*;
+import io.axoniq.demo.giftcard.command.GiftCard;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.XSlf4j;
 import org.axonframework.eventhandling.EventHandler;
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.time.Instant;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 @Component
 @XSlf4j
@@ -41,6 +43,7 @@ public class CardSummaryProjection {
         queryUpdateEmitter.emit(CountCardSummariesQuery.class,
                 query -> event.getId().startsWith(query.getFilter().getIdStartsWith()),
                 new CountChangedUpdate());
+
     }
 
     @EventHandler

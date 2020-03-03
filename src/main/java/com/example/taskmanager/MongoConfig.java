@@ -1,4 +1,4 @@
-package io.axoniq.demo.giftcard.config;
+package com.example.taskmanager;
 
 import com.mongodb.MongoClient;
 import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;

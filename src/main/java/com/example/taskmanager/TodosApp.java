@@ -1,13 +1,13 @@
-package io.axoniq.demo.giftcard;
+package com.example.taskmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GcApp {
+public class TodosApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(GcApp.class, args);
+        SpringApplication.run(TodosApp.class, args);
     }
 
 }

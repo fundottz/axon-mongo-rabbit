@@ -1,5 +1,7 @@
-package com.example.taskmanager;
+package com.example.taskmanager.query;
 
+import com.example.taskmanager.TaskCompleted;
+import com.example.taskmanager.TaskCreated;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
@@ -18,14 +20,14 @@ public class TaskViewProjector {
         event.getDescription(),
         event.getAssignee(), false);
 
-    log.trace("Projecting {} into {}", event, projectedView);
+    log.debug("Projecting {} into {}", event, projectedView);
 
     repository.save(projectedView);
   }
 
   @EventHandler
   public void on(TaskCompleted event) {
-    log.trace("Projecting {}", event);
+    log.debug("Projecting {}", event);
 
     repository.findById(event.getId()).ifPresentOrElse(
         task -> {

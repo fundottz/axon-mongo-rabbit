@@ -1,5 +1,6 @@
-package com.example.taskmanager;
+package com.example.taskmanager.query;
 
+import com.example.taskmanager.TaskType;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.taskmanager
 
-import org.axonframework.modelling.command.AggregateIdentifier
+import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -11,20 +11,20 @@ enum class TaskType {
 }
 
 data class CreateTask(
-        @AggregateIdentifier val id: String,
+        @TargetAggregateIdentifier val id: String,
         val description: String,
         val type: TaskType = TaskType.TASK,
         val assignee: UUID
 )
 
 data class ModifyTask(
-        @AggregateIdentifier val id: String,
+        @TargetAggregateIdentifier val id: String,
         val description: String,
         val dueDate: LocalDate
 )
 
-data class DeleteTask(@AggregateIdentifier val id: String)
-data class CompleteTask(@AggregateIdentifier val id: String)
+data class DeleteTask(@TargetAggregateIdentifier val id: String)
+data class CompleteTask(@TargetAggregateIdentifier val id: String)
 
 data class TaskCreated(
         val id: String,

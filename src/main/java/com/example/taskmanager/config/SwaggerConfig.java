@@ -1,4 +1,4 @@
-package com.example.taskmanager;
+package com.example.taskmanager.config;
 
 import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Bean;

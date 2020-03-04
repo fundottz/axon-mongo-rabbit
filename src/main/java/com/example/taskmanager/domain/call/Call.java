@@ -1,4 +1,4 @@
-package com.example.taskmanager.call;
+package com.example.taskmanager.domain.call;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
@@ -27,7 +27,6 @@ public class Call {
 
   @CommandHandler
   public Call(CreateCallCommand cmd) {
-
     log.debug("Handling {} for call {}", cmd, cmd.getId());
 
     apply(new CallCreatedEvent(cmd.getId(), cmd.getFrom(), cmd.getTo(),

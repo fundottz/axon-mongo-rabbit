@@ -1,5 +1,6 @@
-package io.axoniq.demo.giftcard.command;
+package com.example.taskmanager.config;
 
+import com.example.taskmanager.domain.Task;
 import org.axonframework.common.caching.Cache;
 import org.axonframework.common.caching.WeakReferenceCache;
 import org.axonframework.eventsourcing.EventSourcingRepository;
@@ -11,11 +12,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("command")
-public class GcCommandConfiguration {
+public class CommandConfiguration {
 
     @Bean
-    public Repository<GiftCard> giftCardRepository(EventStore eventStore, Cache cache) {
-        return EventSourcingRepository.builder(GiftCard.class)
+    public Repository<Task> taskRepository(EventStore eventStore, Cache cache) {
+        return EventSourcingRepository.builder(Task.class)
                                       .cache(cache)
                                       .eventStore(eventStore)
                                       .build();

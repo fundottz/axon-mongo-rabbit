@@ -1,4 +1,4 @@
-package com.example.taskmanager;
+package com.example.taskmanager.config;
 
 import com.mongodb.MongoClient;
 import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MongoConfig {
+public class EventStoreConfig {
 
   @Bean
   public EmbeddedEventStore eventStore(EventStorageEngine storageEngine,

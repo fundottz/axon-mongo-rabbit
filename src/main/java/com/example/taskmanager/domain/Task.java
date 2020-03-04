@@ -1,7 +1,12 @@
-package com.example.taskmanager;
+package com.example.taskmanager.domain;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
+import com.example.taskmanager.CompleteTask;
+import com.example.taskmanager.CreateTask;
+import com.example.taskmanager.TaskCompleted;
+import com.example.taskmanager.TaskCreated;
+import com.example.taskmanager.TaskType;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;

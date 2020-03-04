@@ -12,11 +12,11 @@ import java.util.concurrent.CompletableFuture
 @Api
 @RestController
 @RequestMapping("/api/tasks")
-class TaskQueryController(private val queryGateway: QueryGateway) {
+class TaskQueryController(private val taskViewProjector: TaskViewProjector) {
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: String): CompletableFuture<TaskView> {
-        return queryGateway.query(FetchTaskQuery(id), TaskView::class.java)
+    fun getById(@PathVariable id: String): TaskView {
+        return taskViewProjector.handle(FetchTaskQuery(id))
     }
 }
 

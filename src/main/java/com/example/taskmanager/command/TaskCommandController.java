@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskCommandController {
 
   private final CommandGateway commandGateway;
-  private final QueryGateway queryGateway;
 
   // todo: generate id on backend
   @PostMapping

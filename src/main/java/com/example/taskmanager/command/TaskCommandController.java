@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskCommandController {
 
   private final CommandGateway commandGateway;
+  private final QueryGateway queryGateway;
 
   // todo: generate id on backend
   @PostMapping

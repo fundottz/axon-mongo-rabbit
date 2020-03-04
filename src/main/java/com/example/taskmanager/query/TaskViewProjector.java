@@ -1,10 +1,12 @@
 package com.example.taskmanager.query;
 
+import com.example.taskmanager.FetchTaskQuery;
 import com.example.taskmanager.TaskCompleted;
 import com.example.taskmanager.TaskCreated;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -37,5 +39,11 @@ public class TaskViewProjector {
         () -> {
           throw new IllegalArgumentException("Task not found " + event.getId());
         });
+  }
+
+  @QueryHandler
+  public TaskView handle(FetchTaskQuery query) {
+    return repository.findById(query.getTaskId())
+        .orElseThrow(() -> new IllegalArgumentException("Task not found " + query.getTaskId()));
   }
 }

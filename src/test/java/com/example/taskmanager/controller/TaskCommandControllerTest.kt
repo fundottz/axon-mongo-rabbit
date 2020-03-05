@@ -48,7 +48,7 @@ class TaskCommandControllerTest {
         val id = UUID.randomUUID()
         val cmd = CreateTask(id.toString(), "do something", TaskType.TASK, id)
 
-        every { gateway.send(cmd) } returns CompletableFuture.completedFuture(id);
+        every { gateway.send<Any>(cmd) } returns CompletableFuture.completedFuture(id);
 
         val req = post("/api/tasks")
                 .content(mapper.writeValueAsString(cmd))

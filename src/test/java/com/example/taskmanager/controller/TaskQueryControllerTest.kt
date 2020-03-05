@@ -1,10 +1,7 @@
 package com.example.taskmanager.controller
 
 import com.example.taskmanager.TaskType
-import com.example.taskmanager.query.TaskQueryController
-import com.example.taskmanager.query.TaskView
-import com.example.taskmanager.query.TaskViewProjector
-import com.example.taskmanager.query.TaskViewRepository
+import com.example.taskmanager.query.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.mockk.every
 import io.mockk.junit5.MockKExtension
@@ -20,8 +17,6 @@ import org.springframework.test.web.servlet.get
 import java.time.LocalDateTime
 import java.util.*
 
-//@SpringBootTest
-//@AutoConfigureMockMvc
 @ExtendWith(MockKExtension::class)
 @WebMvcTest(TaskQueryController::class, TaskViewProjector::class)
 internal class TaskQueryControllerTest {

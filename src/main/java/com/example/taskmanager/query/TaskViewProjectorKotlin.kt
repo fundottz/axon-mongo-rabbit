@@ -9,8 +9,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
-@Component
-class TaskViewProjector(private val repository: TaskViewRepository) {
+//@Component
+class TaskViewProjectorKotlin(private val repository: TaskViewRepository) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 

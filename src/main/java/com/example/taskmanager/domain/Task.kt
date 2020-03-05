@@ -1,69 +1,66 @@
-package com.example.taskmanager.domain;
+package com.example.taskmanager.domain
 
-import static org.axonframework.modelling.command.AggregateLifecycle.apply;
+import com.example.taskmanager.*
+import org.axonframework.commandhandling.CommandHandler
+import org.axonframework.eventsourcing.EventSourcingHandler
+import org.axonframework.modelling.command.AggregateIdentifier
+import org.axonframework.modelling.command.AggregateLifecycle
+import org.axonframework.spring.stereotype.Aggregate
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import java.time.LocalDateTime
+import java.util.*
 
-import com.example.taskmanager.CompleteTask;
-import com.example.taskmanager.CreateTask;
-import com.example.taskmanager.TaskCompleted;
-import com.example.taskmanager.TaskCreated;
-import com.example.taskmanager.TaskType;
-import java.time.LocalDateTime;
-import java.util.UUID;
-import lombok.extern.slf4j.Slf4j;
-import org.axonframework.commandhandling.CommandHandler;
-import org.axonframework.eventsourcing.EventSourcingHandler;
-import org.axonframework.modelling.command.AggregateIdentifier;
-import org.axonframework.spring.stereotype.Aggregate;
-
-@Slf4j
 @Aggregate
-public class Task {
+class Task {
 
-  @AggregateIdentifier
-  private String id;
-  private TaskType type;
-  private LocalDateTime created;
-  private String description;
-  private UUID assignee;
-  private boolean isComplete;
+    @AggregateIdentifier
+    private lateinit var id: String
+    private lateinit var type: TaskType
+    private lateinit var created: LocalDateTime
+    private lateinit var description: String
+    private lateinit var assignee: UUID
+    private var isComplete = false
 
-  public Task() {
-    log.debug("empty constructor invoked");
-  }
+    private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-  @CommandHandler
-  public Task(CreateTask cmd) {
-    log.debug("Handle command {}", cmd);
-
-    apply(new TaskCreated(cmd.getId(), LocalDateTime.now(), cmd.getDescription(), cmd.getType(),
-        cmd.getAssignee()));
-  }
-
-  @CommandHandler
-  public void handle(CompleteTask cmd) {
-    log.debug("Handle command {}", cmd);
-    if (isComplete) {
-      throw new IllegalArgumentException("Already completed");
+    constructor() {
+        log.debug("empty constructor invoked")
     }
-    apply(new TaskCompleted(cmd.getId()));
-  }
 
-  @EventSourcingHandler
-  public void on(TaskCreated evt) {
-    log.debug("Applying {}", evt);
+    @CommandHandler
+    constructor(cmd: CreateTask) {
+        log.debug("Handle command {}", cmd)
 
-    this.id = evt.getId();
-    this.type = evt.getType();
-    this.created = evt.getCreated();
-    this.description = evt.getDescription();
-    this.assignee = evt.getAssignee();
-  }
+        AggregateLifecycle.apply(
+                TaskCreated(cmd.id!!, LocalDateTime.now(), cmd.description, cmd.type, cmd.assignee))
+    }
 
-  @EventSourcingHandler
-  public void on(TaskCompleted evt) {
-    log.debug("Applying {}", evt);
+    @CommandHandler
+    fun handle(cmd: CompleteTask) {
+        log.debug("Handle command {}", cmd)
 
-    this.isComplete = true;
-    log.debug("Task {} completed", evt.getId());
-  }
+        require(!isComplete) { "Already completed" }
+
+        AggregateLifecycle.apply(TaskCompleted(cmd.id))
+    }
+
+    @EventSourcingHandler
+    fun on(evt: TaskCreated) {
+        log.debug("Applying {}", evt)
+        id = evt.id
+        type = evt.type
+        created = evt.created
+        description = evt.description
+        assignee = evt.assignee
+    }
+
+    @EventSourcingHandler
+    fun on(evt: TaskCompleted) {
+        log.debug("Applying {}", evt)
+
+        isComplete = true
+
+        log.debug("Task {} completed", evt.id)
+    }
 }

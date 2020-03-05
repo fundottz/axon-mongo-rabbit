@@ -10,6 +10,7 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class TaskCommandController {
   private final CommandGateway commandGateway;
 
   @PostMapping
-  public void create(CreateTask cmd) {
+  public void create(@RequestBody CreateTask cmd) {
     commandGateway.send(cmd).thenAccept(r-> log.info("asd {}", r));
   }
 

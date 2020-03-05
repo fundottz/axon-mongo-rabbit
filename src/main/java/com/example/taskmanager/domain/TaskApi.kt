@@ -11,9 +11,9 @@ enum class TaskType {
 }
 
 data class CreateTask(
-        @TargetAggregateIdentifier val id: String? = UUID.randomUUID().toString().substring(10),
+        @TargetAggregateIdentifier val id: String,
         val description: String,
-        val type: TaskType = TaskType.TASK,
+        val type: TaskType? = TaskType.TASK,
         val assignee: UUID
 )
 

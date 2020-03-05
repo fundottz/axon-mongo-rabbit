@@ -33,7 +33,7 @@ class Task {
         log.debug("Handle command {}", cmd)
 
         AggregateLifecycle.apply(
-                TaskCreated(cmd.id!!, LocalDateTime.now(), cmd.description, cmd.type, cmd.assignee))
+                TaskCreated(cmd.id!!, LocalDateTime.now(), cmd.description, cmd.type!!, cmd.assignee))
     }
 
     @CommandHandler

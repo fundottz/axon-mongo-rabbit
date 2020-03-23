@@ -54,6 +54,13 @@ class TaskCommandControllerTest {
                 .content(mapper.writeValueAsString(cmd))
                 .contentType(MediaType.APPLICATION_JSON)
 
-        mvc.perform(req).andExpect { MockMvcResultMatchers.status().isOk }
+        mvc.perform(req).andExpect { MockMvcResultMatchers.status().isAccepted }
     }
+
+    @Test
+    fun `should complete existing task`() {
+
+    }
+
+    // should fail complete non-existing task
 }

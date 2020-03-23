@@ -15,8 +15,8 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.1.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <version>2.2.5.RELEASE</version>
+    <relativePath/>
   </parent>
 
   <properties>
@@ -34,6 +34,21 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
 
 
     <!-- Axon -->
@@ -55,10 +70,6 @@
       <version>${axon.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-mongodb</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>io.mockk</groupId>
@@ -78,10 +89,6 @@
       <version>2.9.2</version>
     </dependency>
     <!-- Vanilla Spring Boot to start with -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
 
     <!-- This will of course be an Axon application. We're adding Kotlin to easily
          write command and event classes. -->
@@ -126,14 +133,6 @@
       <groupId>org.axonframework</groupId>
       <artifactId>axon-micrometer</artifactId>
       <version>${axon.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-actuator</artifactId>
     </dependency>
 
     <dependency>
